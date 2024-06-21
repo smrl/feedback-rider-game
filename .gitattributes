@@ -1,0 +1,2 @@
+export_templates/linux_debug.arm64 filter=lfs diff=lfs merge=lfs -text
+export_templates/linux_release.arm64 filter=lfs diff=lfs merge=lfs -text
