@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1wchigif2f1q"]
+
+[ext_resource type="Script" path="res://parallax1.gd" id="1_4r2rw"]
+
+[sub_resource type="Gradient" id="Gradient_6klk2"]
+offsets = PackedFloat32Array(0, 0.28833, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.28833, 0.28833, 0.28833, 0.28833, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dgusv"]
+noise_type = 0
+seed = 65
+frequency = 0.011
+fractal_type = 0
+fractal_octaves = 4
+fractal_gain = 0.815
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tlb8d"]
+width = 1280
+height = 960
+seamless_blend_skirt = 0.0
+color_ramp = SubResource("Gradient_6klk2")
+noise = SubResource("FastNoiseLite_dgusv")
+
+[sub_resource type="Gradient" id="Gradient_jwkyq"]
+offsets = PackedFloat32Array(0, 0.604706, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0.313726)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1pb50"]
+noise_type = 3
+frequency = 0.0073
+offset = Vector3(0, 0, 210.38)
+fractal_octaves = 2
+fractal_gain = 1.0
+fractal_weighted_strength = 0.41
+cellular_distance_function = 1
+cellular_return_type = 6
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sukr7"]
+width = 640
+height = 480
+in_3d_space = true
+color_ramp = SubResource("Gradient_jwkyq")
+noise = SubResource("FastNoiseLite_1pb50")
+
+[node name="parallax1" type="Node2D"]
+script = ExtResource("1_4r2rw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -1)
+texture = SubResource("NoiseTexture2D_tlb8d")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_repeat = 3
+texture = SubResource("NoiseTexture2D_sukr7")
